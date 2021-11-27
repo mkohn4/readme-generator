@@ -47,6 +47,19 @@ const readmeInfo = () => {
                 }
             }
         },{
+            type: 'confirm',
+            name: 'screenshot',
+            message: 'Have you put a screenshot.png file for your application into the images directory of Desktop/projects/readme-gen/images ?',
+            validate: screenshot => {
+                if (screenshot) {
+                    return true;
+                } else {
+                    console.log('Please add the screenshot.png file to continue');
+                    return false;
+                }
+            }
+        },
+        {
             type: 'input',
             name: 'usageInfo',
             message: 'What is the Usage Information for this Project?'

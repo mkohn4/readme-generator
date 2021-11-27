@@ -708,18 +708,23 @@ var markup =  function (readmeAnswers) {
 # ${readmeAnswers.title}
 
 ## Table of Contents
-[Description][##description]
-[Installation Instructions][##installation]
-[Usage Details][##usage]
-[Contribution Guidelines][##contribution-guidelines]
-[Testing Instructions][##testing-instructions]
-[Questions?][##questions?]
-[License Info][##license]
+* [Description](##description)
+* [Screenshot](##screenshot)
+* [Installation Instructions](##installation)
+* [Usage Details](##usage)
+* [Contribution Guidelines](##contribution-guidelines)
+* [Testing Instructions](##testing-instructions)
+* [Questions?](##questions?)
+* [License Info](##license)
 
 
 ## Description
 
 ${readmeAnswers.description}
+
+## Image
+
+![Screenshot of deployed application][./images/screenshot.png]
 
 ## Installation
 
