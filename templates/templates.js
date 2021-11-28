@@ -2,6 +2,7 @@ const fs = require('fs');
 
 var licenseInfo =  readmeAnswers => {
     if (readmeAnswers.license == 'MIT') {
+        //add license text
         readmeAnswers.license = `MIT License
 
         Copyright (c) ${new Date().getFullYear()} ${readmeAnswers.username}
@@ -22,8 +23,11 @@ var licenseInfo =  readmeAnswers => {
         AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
         LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-        SOFTWARE.`
-    } else {
+        SOFTWARE.`;
+        //create key:value pair for licenseBadge
+        readmeAnswers.licenseBadge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`;
+    } else if (readmeAnswers.license == 'GNU') {
+        //set license text
         readmeAnswers.license = `                    
         GNU GENERAL PUBLIC LICENSE
         Version 3, 29 June 2007
@@ -699,8 +703,34 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.`
+
+//set license badge
+readmeAnswers.licenseBadge = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`;
+
+    } else {
+        //set license value to empty string
+        readmeAnswers.license == '';
+        //set license badge = empty string
+        readmeAnswers.licenseBadge = '';
+
     }
     return readmeAnswers;
+}
+//if license is NONE, dont show license TOC
+const licenseLink = (license) => {
+    if (license === '') {
+        return '';
+    } else {
+        return `* [License Info](##license)`;
+    }
+}
+//if license is NONE, dont show license section
+const licenseSection = (license) => {
+    if (license=== '') {
+        return '';
+    } else {
+        return `## License`;
+    }
 }
 
 var markup =  function (readmeAnswers) { 
@@ -715,16 +745,13 @@ var markup =  function (readmeAnswers) {
 * [Contribution Guidelines](##contribution-guidelines)
 * [Testing Instructions](##testing-instructions)
 * [Questions?](##questions?)
-* [License Info](##license)
+${licenseLink(readmeAnswers.license)}
 
+${readmeAnswers.licenseBadge}
 
 ## Description
 
 ${readmeAnswers.description}
-
-## Image
-
-![Screenshot of deployed application][./images/screenshot.png]
 
 ## Installation
 
@@ -747,7 +774,7 @@ ${readmeAnswers.testInstructions}
 Check out my Github: http://www.github.com/${readmeAnswers.username}
 Email Me: ${readmeAnswers.email}
 
-## License
+${licenseSection(readmeAnswers.license)}
 ${readmeAnswers.license}
 
 `};

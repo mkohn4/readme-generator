@@ -46,18 +46,6 @@ const readmeInfo = () => {
                     return false;
                 }
             }
-        },{
-            type: 'confirm',
-            name: 'screenshot',
-            message: 'Have you put a screenshot.png file for your application into the images directory of Desktop/projects/readme-gen/images ?',
-            validate: screenshot => {
-                if (screenshot) {
-                    return true;
-                } else {
-                    console.log('Please add the screenshot.png file to continue');
-                    return false;
-                }
-            }
         },
         {
             type: 'input',
@@ -73,10 +61,10 @@ const readmeInfo = () => {
             message: 'What are the test instructions for your project?'
         },
         {
-            type: 'checkbox',
+            type: 'list',
             name: 'license',
             message: 'Which license would you like to use?',
-            choices: ['MIT', 'GNU'],
+            choices: ['MIT', 'GNU', 'None'],
             validate: license => {
                 if (license) {
                     return true;
