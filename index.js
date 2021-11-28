@@ -75,25 +75,6 @@ const readmeInfo = () => {
             }
         },
         {
-            type: 'confirm',
-            name: 'badges',
-            message: 'Would you like to add a custom badge color for the License?',
-            default: false
-        },
-        {
-            type: 'input',
-            name: 'badgeColor',
-            message: 'What would you like your Badge Color to be?',
-            when: ({badges}) => {
-                //if user selected true in badges prompt, show this q
-                if (badges) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        },
-        {
             type: 'input',
             name: 'username',
             message: 'What is your Github Username?'
